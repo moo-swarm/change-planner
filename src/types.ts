@@ -57,6 +57,18 @@ export interface Milestone {
   reached: boolean
 }
 
+/**
+ * Future-back draft row (E6): a condition on the way back from the end state.
+ * Stays a draft until promoted; promotedMilestoneId is NOT proof of promotion —
+ * promote-state is derived from milestone existence (see utils/futureback.ts).
+ */
+export interface FuturebackCondition {
+  id: string
+  text: string
+  date?: string
+  promotedMilestoneId?: string
+}
+
 export interface Initiative {
   id: string
   title: string
@@ -69,6 +81,10 @@ export interface Initiative {
   stakeholderProfiles: StakeholderProfile[]
   assessments?: Assessment[]
   milestones?: Milestone[]
+  /** Future-back mode (E6) — all optional; older initiatives/data stay valid (AC6.5) */
+  futurebackEnabled?: boolean
+  endStateStatement?: string
+  futurebackConditions?: FuturebackCondition[]
   createdAt: number
   updatedAt: number
   completedAt?: number

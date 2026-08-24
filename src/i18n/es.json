@@ -295,5 +295,23 @@
     "cancel": "Cancelar",
     "delete": "Eliminar perfil",
     "suggested_action": "Aborda el motivador principal de {{name}}: {{motivator}}"
+  },
+  "futureback": {
+    "tab": "Del final hacia atrás",
+    "pitch_title": "Planifica desde el final",
+    "pitch_body": "Describe dónde quieres llegar y deriva las condiciones del camino de vuelta. Opcional, por iniciativa.",
+    "enable": "Activar para esta iniciativa",
+    "not_now": "Ahora no",
+    "statement_label": "Estado final",
+    "statement_placeholder": "Dentro de seis meses, nuestro equipo …",
+    "lint_warning": "Esto suena a solución, no a estado final: {{words}}. Describe el resultado esperado.",
+    "lint_dismiss": "Descartar",
+    "conditions_label": "Condiciones del camino de vuelta",
+    "condition_placeholder": "¿Qué debe cumplirse primero?",
+    "add_condition": "Añadir condición",
+    "push_one": "Añadir a la hoja de ruta",
+    "push_all": "Añadir todas a la hoja de ruta",
+    "on_roadmap": "En la hoja de ruta ✓",
+    "disable": "Desactivar del final hacia atrás"
   }
 }

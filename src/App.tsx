@@ -17,6 +17,7 @@ import SharedView from './components/SharedView'
 import RoadmapView from './components/RoadmapView'
 import AssessmentView from './components/AssessmentView'
 import BoardView from './components/BoardView'
+import FutureBackTab from './components/FutureBackTab'
 import { encodeInitiative, decodeInitiative } from './utils/sharing'
 
 const STORAGE_KEY = 'change-planner-initiatives'
@@ -50,7 +51,7 @@ function save(initiatives: Initiative[]) {
 }
 
 type View = 'canvas' | 'learn'
-type CanvasTab = 'workspace' | 'guided' | 'roadmap' | 'board' | 'assess'
+type CanvasTab = 'workspace' | 'guided' | 'futureback' | 'roadmap' | 'board' | 'assess'
 
 export default function App() {
   const { t } = useTranslation()
@@ -346,39 +347,46 @@ export default function App() {
             ) : (
               <>
                 {current && (
-                  <div className="flex items-center gap-1 mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">
+                  <div className="flex items-center gap-1 mb-6 border-b border-gray-200 dark:border-gray-700 pb-2 overflow-x-auto">
                     <button
                       type="button"
                       onClick={() => setCanvasTab('workspace')}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${canvasTab === 'workspace' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${canvasTab === 'workspace' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                     >
                       {t('nav.workspace')}
                     </button>
                     <button
                       type="button"
                       onClick={() => setCanvasTab('guided')}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${canvasTab === 'guided' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${canvasTab === 'guided' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                     >
                       {t('nav.guided')}
                     </button>
                     <button
                       type="button"
+                      onClick={() => setCanvasTab('futureback')}
+                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${canvasTab === 'futureback' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                    >
+                      {t('futureback.tab')}
+                    </button>
+                    <button
+                      type="button"
                       onClick={() => setCanvasTab('roadmap')}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${canvasTab === 'roadmap' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${canvasTab === 'roadmap' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                     >
                       {t('roadmap.tab')}
                     </button>
                     <button
                       type="button"
                       onClick={() => setCanvasTab('board')}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${canvasTab === 'board' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${canvasTab === 'board' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                     >
                       {t('board.tab')}
                     </button>
                     <button
                       type="button"
                       onClick={() => setCanvasTab('assess')}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${canvasTab === 'assess' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${canvasTab === 'assess' ? 'bg-brand-100 text-brand-700 dark:bg-gray-800 dark:text-brand-400' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                     >
                       {t('assess.tab')}
                     </button>
@@ -465,6 +473,13 @@ export default function App() {
                       />
                     </div>
                   </div>
+                ) : canvasTab === 'futureback' ? (
+                  <FutureBackTab
+                    initiative={current}
+                    milestones={current.milestones ?? []}
+                    onPatch={patch}
+                    onClose={() => setCanvasTab('workspace')}
+                  />
                 ) : canvasTab === 'roadmap' ? (
                   <RoadmapView
                     initiative={current}

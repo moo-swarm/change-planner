@@ -14,13 +14,22 @@ React 18 · TypeScript · Vite · Tailwind CSS · react-i18next (EN/ES/BE/RU)
 npm install
 npm run dev      # start Vite dev server
 npm run build    # tsc typecheck + production build
+npm test         # vitest unit tests
 npm run preview  # preview the production build locally
 ```
 
-No test runner is configured yet (tracked in `ROADMAP.md`, epic E4).
-
 ## Deploy
 GitHub Pages via GitHub Actions on push to `main`.
+
+## Future-back planning
+
+Change plans drift when they start from the tools they'll use instead of the outcome they want. Each initiative gains a **Future-back** tab in its canvas (between Guided and Roadmap) that plans from the end: describe where you want to arrive in **End state**, then derive the conditions that must be true first, backwards. The mode is opt-in per initiative — until enabled the tab shows a short pitch; **Enable for this initiative** turns it on, **Not now** declines and returns to the workspace unchanged.
+
+The end state gets a gentle vocabulary guard: while you type (debounced), an amber banner flags solution words — tool and implementation nouns like jira, docker, migrate ("This sounds like a solution, not an end state: … Describe the outcome instead."). It never blocks editing or saving. Matching is whole-word and case-insensitive, so "jira-like" passes and repeats are deduplicated; **Dismiss** quiets the words listed for the rest of the visit (leaving the tab clears it), and typing a different solution word warns again. The word list follows the app language: Spanish falls back to the English list, Belarusian to the Russian one — whose seeds are transliterated tool names (джира, гитхаб) as they're actually written.
+
+Conditions build as rows of text plus an optional date under "Conditions on the way back". **Add to roadmap** promotes one condition into a plain roadmap milestone — title is the condition text, date is the row's date or today when left blank — and the row reads "On roadmap ✓"; **Add all to roadmap** promotes every drafted row in one atomic save, so an interrupted write can never strand half a promotion. Promoted conditions are ordinary milestones, needing nothing special from the Roadmap timeline or Progress view. Promotion state stays derived rather than permanent: delete the milestone from the Roadmap and the condition row quietly renders as a draft again, editable and re-promotable. **Turn off future-back** keeps the statement and conditions stored; re-enabling restores everything intact.
+
+Storage is additive: three optional fields on the initiative inside the existing `change-planner-initiatives` key. Export/import are untouched — backups stay version 1, older exports import cleanly with the feature simply absent. One direction to know: importing a newer backup into an older build silently drops future-back data, the usual client-side trade.
 
 ## localStorage keys
 

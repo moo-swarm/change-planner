@@ -295,5 +295,23 @@
     "cancel": "Cancel",
     "delete": "Remove profile",
     "suggested_action": "Address {{name}}'s top motivator: {{motivator}}"
+  },
+  "futureback": {
+    "tab": "Future-back",
+    "pitch_title": "Plan from the end",
+    "pitch_body": "Describe where you want to arrive, then derive the conditions on the way back. Optional — per initiative.",
+    "enable": "Enable for this initiative",
+    "not_now": "Not now",
+    "statement_label": "End state",
+    "statement_placeholder": "Six months from now, our team …",
+    "lint_warning": "This sounds like a solution, not an end state: {{words}}. Describe the outcome instead.",
+    "lint_dismiss": "Dismiss",
+    "conditions_label": "Conditions on the way back",
+    "condition_placeholder": "What must be true first?",
+    "add_condition": "Add condition",
+    "push_one": "Add to roadmap",
+    "push_all": "Add all to roadmap",
+    "on_roadmap": "On roadmap ✓",
+    "disable": "Turn off future-back"
   }
 }
